@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app= 'KanbanApp'>
+<head>
+	<meta charset="utf-8">
+	<title>Kanban Board</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+	<div ng-controller="kanbanController as KC">
+		<!-- <p>{{KC.demo}}</p> -->
+		<!-- <p>{{demoview}}</p> -->
+		<!-- <input type="text" ng-model="demoview"> -->
+		<!-- <button ng-click="KC.show()">Gg</button> -->
+		<h1>Kanban</h1>
+		<form ng-submit="KC.addTask();">
+			<span>Nombre: </span>
+			<input type="text" ng-model="newObj.name">
+			<span>Descripción: </span>
+			<input type="text" ng-model="newObj.desc">
+			<!-- <span>Estatus: </span> -->
+			<!-- <input type="text" ng-model="newObj.status"> -->
+			<input type="submit" value="Add">
+		</form>
+		<p>{{KC.tasks}}</p>
+		<ul>
+			<h3>TODO</h3>
+			<li ng-repeat="task in KC.tasks | filter:{status:1}">
+				<span>{{task.name}}</span>
+				<button ng-click="KC.nextStatus(task.index);">Next</button>
+			</li>
+		</ul>
+		<ul>
+			<h3>T2</h3>
+			<li ng-repeat="task in KC.tasks | filter:{status:2}">
+				<span>{{task.name}}</span>
+				<button ng-click="KC.nextStatus(task.index);">Next</button>
+			</li>
+		</ul>
+		<ul>
+			<h3>T3</h3>
+			<li ng-repeat="task in KC.tasks | filter:{status:3}">
+				<span>{{task.name}}</span>
+			</li>
+		</ul>
+	</div>
+	<p>{{3+1}}</p>
+</body>
+</html>
